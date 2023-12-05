@@ -41,6 +41,7 @@ const resolvers = {
 
             return { token, user };
         },
+        // The below mutation is for the container were gonna have of favorites that the user is gonna have. Do we also need to have a mutation to add the champions into that container?
         removeChampion: async (parent, { thoughtId }) => {
             return champion.findOneAndDelete({ _id: thoughtId });
         },
