@@ -13,7 +13,6 @@ function App() {
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Outlet />
       </div>
-
     </ApolloProvider>
   );
 }

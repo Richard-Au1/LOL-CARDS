@@ -15,7 +15,6 @@ const Home = () => {
         <h1>Welcome to Lol Cards</h1>
       </div>
       <div className="card-body m-5">
-        <h2>Here is a list of matchups you can vote on:</h2>
         {loading ? (
           <div>Loading...</div>
         ) : (
@@ -33,9 +32,9 @@ const Home = () => {
         )}
       </div>
       <div className="card-footer text-center m-3">
-        <h2>Ready to create a new matchup?</h2>
+        <h2>Click the button below to enter Lol Cards</h2>
         <Link to="/matchup">
-          <button className="btn btn-lg btn-danger">Create Matchup!</button>
+          <button className="btn btn-lg "> <img src="https://www.seekpng.com/png/detail/318-3184286_poro-lol-png-poros-league-of-legends-png.png" alt="Poro Lol Png - Poros League Of Legends Png@seekpng.com"></img> </button>
         </Link>
       </div>
     </div>
