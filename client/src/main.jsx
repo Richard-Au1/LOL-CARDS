@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
 import Home from './pages/Home';
-import Matchup from './pages/Matchup';
-import Vote from './pages/Vote';
+import Champion from './pages/Champion';
+import SingleChampion from './pages/SingleChampion';
 import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       }, {
-        path: '/matchup',
-        element: <Matchup />
+        path: '/champion',
+        element: <Champion />
       }, {
-        path: '/matchup/:id',
-        element: <Vote />
+        path: '/champion/:championId',
+        element: <SingleChampion />
       },
     ],
   },
