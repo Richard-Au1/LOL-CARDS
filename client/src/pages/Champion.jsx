@@ -3,10 +3,10 @@ import { useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react'
 
 const MyComponent = () => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+  const [champions, setChampions] = useState([]);
+  const [error, setError] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -17,8 +17,14 @@ const MyComponent = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
+
         const jsonData = await response.json();
-        setData(jsonData);
+        console.log(jsonData)
+        let tempArray = []
+        for (const element in jsonData.data) {
+          tempArray.push(jsonData.data[element])
+        }
+        setChampions(tempArray);
       } catch (error) {
         setError(error);
       }
@@ -27,12 +33,19 @@ const MyComponent = () => {
     fetchData();
   }, []);
 
-  const champions = data.name;
+
 
   return (
     <div>
       <h1>Champions</h1>
-      { champions } 
+      {/* map your data after it loads */}
+      {champions.length === 0 ? <p>loading</p> :
+        <ul>{
+          champions.map((champion,index) => (
+            <li key={index}>{champion.name}</li>
+          ))
+        }</ul>
+      }
     </div>
   );
 };
