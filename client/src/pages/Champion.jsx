@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
 import React, { useState, useEffect } from 'react'
 
 const MyComponent = () => {
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
  useEffect(() => {
@@ -23,28 +21,18 @@ const MyComponent = () => {
         setData(jsonData);
       } catch (error) {
         setError(error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const champions = data?.data?.champions;
+  const champions = data.name;
 
   return (
     <div>
       <h1>Champions</h1>
-      {}
+      { champions } 
     </div>
   );
 };
