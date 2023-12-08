@@ -5,7 +5,7 @@ const ChampionSchema = new Schema({
         type: String,
         required: true,
     },
-    Description: {
+    description: {
         type: String,
         required: true,
     },

@@ -9,7 +9,7 @@ type User {
 type Champion {
     _id: ID
     name: String
-    Description: String
+    description: String
 }
 
 type Auth {
@@ -21,7 +21,7 @@ type Query {
     users: [User]
     user(username: String!): User
     champions(username: String): [Champion]
-    champion(champtionId: ID!): Champion
+    champion(championId: ID!): Champion
 }
 
 type Mutation {
