@@ -1,12 +1,12 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams, Link } from 'react-router-dom';
 import { CREATE_VOTE } from '../utils/mutations';
-import { QUERY_MATCHUPS } from '../utils/queries';
+import { QUERY_CHAMPIONS } from '../utils/queries';
 
 const Vote = () => {
   let { id } = useParams();
 
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
+  const { loading, data } = useQuery(QUERY_CHAMPIONS, {
     variables: { _id: id },
   });
 
