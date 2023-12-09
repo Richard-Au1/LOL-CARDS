@@ -6,6 +6,7 @@ const MyComponent = () => {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
 
+  // we can use promise.all to do multiple fetch requests. The problem is that the endpoint that riot gives us is the individual champion. 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,11 +39,16 @@ const MyComponent = () => {
   return (
     <div>
       <h1>Champions</h1>
-      {/* map your data after it loads */}
       {champions.length === 0 ? <p>loading</p> :
         <ul>{
           champions.map((champion,index) => (
-            <li key={index}>{champion.name}</li>
+            <li key={index}>
+              {champion.name}
+            <div>
+            <img src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
+            </div>
+            </li>
+            
           ))
         }</ul>
       }
