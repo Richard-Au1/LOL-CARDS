@@ -30,25 +30,49 @@ const MyComponent = () => {
         setError(error);
       }
     };
-
     fetchData();
   }, []);
 
 
+useEffect(()=> {
+  const handleClick = (event) => {
+        console.log(event.target);
+      }
 
+      const imgElement = document.querySelectorAll('.champion-img');
+      imgElement.forEach((element) => {
+        element.addEventListener('click', handleClick);
+      });
+
+      return() => {
+        imgElement.forEach((element) => {
+          element.removeEventListener('click', handleClick);
+        });
+      };
+}, [champions]);
+
+
+
+  
+
+
+// How do we access the seed data description? We can access the api data objects 'blurb' but what if we want the full lore?
   return (
     <div>
       <h1>Champions</h1>
       {champions.length === 0 ? <p>loading</p> :
         <ul>{
-          champions.map((champion,index) => (
+          champions.map((champion, index) => (
             <li key={index}>
               {champion.name}
-            <div>
-            <img src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
-            </div>
+              <div >
+                <img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
+              </div>
+              {/* <div>
+                {champion.description}
+              </div> */}
             </li>
-            
+
           ))
         }</ul>
       }
