@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import Champion from './pages/Champion';
 import SingleChampion from './pages/SingleChampion';
 import NotFound from './pages/NotFound';
+import SignUp from './pages/SignUp'
+import LogIn from './pages/LogIn.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,13 @@ const router = createBrowserRouter([
       }, {
         path: '/champion/:championId',
         element: <SingleChampion />
-      },
+      }, {
+        path: '/signup',
+        element: <SignUp />
+      }, {
+        path: '/login',
+        element: <LogIn />
+      }
     ],
   },
 
