@@ -1718,5 +1718,20 @@
     .align-content-center-xl {
       align-content: center;
     }
+
+    #fav-btn {
+      color: darkgoldenrod;
+      margin-bottom: 5%;
+    }
+
+    .champion-layout {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #ind-champion {
+      width: 33.33%;
+      box-sizing: border-box;
+    }
   }
   
