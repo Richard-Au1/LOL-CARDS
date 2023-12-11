@@ -1719,7 +1719,7 @@
       align-content: center;
     }
 
-    #fav-btn {
+    .fav-btn {
       color: darkgoldenrod;
       margin-bottom: 5%;
     }
@@ -1732,6 +1732,13 @@
     #ind-champion {
       width: 33.33%;
       box-sizing: border-box;
+    }
+
+    .fav-container {
+      width: 10%;
+      border: solid;
+      border-color: white;
+      color: darkgoldenrod;
     }
   }
   

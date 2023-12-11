@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 const MyComponent = () => {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
+  const [favorites, setFavorites] = useState([])
 
   // we can use promise.all to do multiple fetch requests. The problem is that the endpoint that riot gives us is the individual champion. 
   useEffect(() => {
@@ -51,6 +52,17 @@ const MyComponent = () => {
     };
   }, [champions]);
 
+  useEffect(() => {
+    const handleClick = (event) => {
+      console.log(event.target);
+    }
+
+    const favElement = document.querySelectorAll('.fav-btn');
+    favElement.forEach((element) => {
+      element.addEventListener('click', handleClick);
+    });
+  }, [favorites]);
+
 
 
 
@@ -61,7 +73,7 @@ const MyComponent = () => {
     <div>
       <h1>Champions</h1>
       {champions.length === 0 ? <p>loading</p> :
-        <ul class= 'champion-layout'>{
+        <ul className= 'champion-layout'>{
           champions.map((champion, index) => (
             <li id='ind-champion' key={index}>
               {champion.name}
@@ -70,7 +82,7 @@ const MyComponent = () => {
                   <img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
                 </Link>
               </div>
-              <button id = 'fav-btn'> Favorite </button>
+              <button className = 'fav-btn'> Favorite </button>
             </li>
           ))
         }</ul>
