@@ -5,57 +5,86 @@ import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: '', password: '', });
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+// const LoginPage = () => {
+//   const [formState, setFormState] = useState({
+//     username: '',
+//     password: '',
+//   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+//   const [loginUser, { error }] = useMutation(LOGIN_USER);
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
 
-    setFormData({
-      ...formData,
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       await loginUser({
+//         variables: {
+//           email: formData.email,
+//           password: formData.password,
+//         },
+//       });
+
+//       window.location.href = '/dashboard';
+//     } catch (error) {
+//       console.error('Can not log in', error.message);
+//     }
+//   };
+
+const Login = () => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Form submitted!');
-
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
     try {
-      const { data } = await loginUser({
-        variables: { ...formData },
+      const { data } = await login({
+        variables: { ...formState },
       });
 
       Auth.login(data.login.token);
-    } catch (error) {
+    } catch (e) {
       console.error(e);
     }
 
-    setFormData({
+    // clear form values
+    setFormState({
       email: '',
       password: '',
     });
   };
-
   return (
     <div>
-      {/* <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <form onSubmit={handleFormSubmit}>
         <label>
-          Username:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
+          Email:
+          <input type="text" name="email" value={formState.email} onChange={handleChange} />
         </label>
         <label>
           Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          <input type="password" name="password" value={formState.password} onChange={handleChange} />
         </label>
         <button type="submit">Login</button>
       </form>
       {error && <p>Error: {error.message}</p>}
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>  */}
+      </p>  
       {data ? (
         <p>
           Success! You may now head{' '}
@@ -101,4 +130,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
