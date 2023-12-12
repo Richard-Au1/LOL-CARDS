@@ -5,7 +5,7 @@ import { LOGIN_USER } from '../utils/mutations';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -20,7 +20,7 @@ const LoginPage = () => {
     try {
       await loginUser({
         variables: {
-          username: formData.username,
+          email: formData.username,
           password: formData.password,
         },
       });
