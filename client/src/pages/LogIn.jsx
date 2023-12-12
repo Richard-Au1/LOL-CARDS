@@ -10,7 +10,6 @@ const LoginPage = () => {
   });
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -28,7 +27,7 @@ const LoginPage = () => {
 
       window.location.href = '/dashboard';
     } catch (error) {
-      console.error('Error logging in:', error.message);
+      console.error('Can not log in', error.message);
     }
   };
 
@@ -40,12 +39,10 @@ const LoginPage = () => {
           Username:
           <input type="text" name="username" value={formData.username} onChange={handleChange} />
         </label>
-        <br />
         <label>
           Password:
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </label>
-        <br />
         <button type="submit">Login</button>
       </form>
       {error && <p>Error: {error.message}</p>}
