@@ -14,9 +14,9 @@ useEffect(() => {
     try {
       console.log('here1')
       const response = await fetch(
-        `https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion/${champion.id}.json`
+        `https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion/${champions.name}.json`
       );
-console.log('here2')
+      console.log('here2')
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

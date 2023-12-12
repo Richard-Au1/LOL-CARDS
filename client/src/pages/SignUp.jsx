@@ -10,27 +10,29 @@ const SignUpPage = () => {
     password: '',
   });
 
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
 
     try {
-      await addUser({
-        variables: {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        },
+      const { data } = await addUser({
+        variables: { ...formData},
       });
 
-      window.location.href = '/login';
-    } catch (error) {
-      console.error('Error signing up:', error.message);
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
     }
   };
 
