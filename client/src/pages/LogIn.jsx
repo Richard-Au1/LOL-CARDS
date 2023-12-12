@@ -3,45 +3,79 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 
-const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+// const LoginPage = () => {
+//   const [formState, setFormState] = useState({
+//     username: '',
+//     password: '',
+//   });
 
-  const [loginUser, { error }] = useMutation(LOGIN_USER);
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+//   const [loginUser, { error }] = useMutation(LOGIN_USER);
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       await loginUser({
+//         variables: {
+//           email: formData.email,
+//           password: formData.password,
+//         },
+//       });
+
+//       window.location.href = '/dashboard';
+//     } catch (error) {
+//       console.error('Can not log in', error.message);
+//     }
+//   };
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
     try {
-      await loginUser({
-        variables: {
-          username: formData.username,
-          password: formData.password,
-        },
+      const { data } = await login({
+        variables: { ...formState },
       });
 
-      window.location.href = '/dashboard';
-    } catch (error) {
-      console.error('Can not log in', error.message);
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
     }
-  };
 
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <label>
-          Username:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
+          Email:
+          <input type="text" name="email" value={formState.email} onChange={handleChange} />
         </label>
         <label>
           Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          <input type="password" name="password" value={formState.password} onChange={handleChange} />
         </label>
         <button type="submit">Login</button>
       </form>
@@ -53,4 +87,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
