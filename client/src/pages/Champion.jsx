@@ -63,11 +63,6 @@ const MyComponent = () => {
     });
   }, [favorites]);
 
-
-
-
-
-
   // How do we access the seed data description? We can access the api data objects 'blurb' but what if we want the full lore?
   return (
     <div>
@@ -76,7 +71,9 @@ const MyComponent = () => {
         <ul className= 'champion-layout'>{
           champions.map((champion, index) => (
             <li id='ind-champion' key={index}>
+              <div style={championNameStyle}>
               {champion.name}
+              </div>
               <div >
                 <Link to={`/champion/${champion.id}`}>
                   <img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
@@ -89,6 +86,15 @@ const MyComponent = () => {
       }
     </div>
   );
+};
+
+const championNameStyle = {
+  fontSize: '40px',
+  background: 'gray',
+  fontWeight: 'Bold',
+  listStyle: 'none',
+  color: 'white',
+  boxSizing: 'content-box',
 };
 
 export default MyComponent;
