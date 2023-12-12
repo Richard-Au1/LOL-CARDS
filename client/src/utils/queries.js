@@ -19,3 +19,11 @@ export const QUERY_CHAMPIONS = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_CHAMPIONS = gql `
+query getSingleChampion($championId: ID!){
+  champion(championId: $champtionId) {
+    _id
+  }
+}
+`
