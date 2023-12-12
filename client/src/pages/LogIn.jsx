@@ -1,39 +1,46 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'; 
+import { LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '', });
+  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
 
-  const [loginUser, { error }] = useMutation(LOGIN_USER);
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted!');
 
     try {
-      await loginUser({
-        variables: {
-          email: formData.username,
-          password: formData.password,
-        },
+      const { data } = await loginUser({
+        variables: { ...formData },
       });
 
-      window.location.href = '/dashboard';
+      Auth.login(data.login.token);
     } catch (error) {
-      console.error('Can not log in', error.message);
+      console.error(e);
     }
+
+    setFormData({
+      email: '',
+      password: '',
+    });
   };
 
   return (
     <div>
-      <h2>Login</h2>
+      {/* <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -48,7 +55,48 @@ const LoginPage = () => {
       {error && <p>Error: {error.message}</p>}
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+      </p>  */}
+      {data ? (
+        <p>
+          Success! You may now head{' '}
+          <Link to="/champions">back to the champion page.</Link>
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input
+            className="form-input"
+            placeholder="Your email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="******"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <button
+            className="btn btn-block btn-primary"
+            style={{ cursor: 'pointer' }}
+            type="submit"
+          >
+            Submit
+          </button>
+          <p>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
+        </form>
+      )}
+
+      {error && (
+        <div className="my-3 p-3 bg-danger text-white">
+          {error.message}
+        </div>
+      )}
     </div>
   );
 };
