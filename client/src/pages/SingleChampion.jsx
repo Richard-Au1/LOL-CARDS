@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { QUERY_SINGLE_CHAMPIONS } from '../utils/queries';
+import { Link } from 'react-router-dom'
 
 // useParams 
 
@@ -45,6 +46,9 @@ const SingleChamp = () => {
 
   return (
     <div style={backgroundStyle}>
+      <Link to= {'/champion'}>
+        <button>Home</button>
+      </Link>
       <h1 style={championNameStyle}>Champions </h1>
       <ul style={championTitle} >
         {champion.map((champion) => (
