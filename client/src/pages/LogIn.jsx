@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import  {LOGIN_USER}  from '../utils/mutations';
+import logo from '../assets/championList.jpeg';
 
 import Auth from '../utils/auth';
 
@@ -70,22 +71,11 @@ console.log('here2')
   
   return (
     <div>
-      <h2>Login</h2>
-      {/* <form onSubmit={handleFormSubmit}>
-        <label>
-          Email:
-          <input type="text" name="email" value={formState.email} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" value={formState.password} onChange={handleChange} />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>Error: {error.message}</p>}
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>   */}
+      <h2 style={{color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2>
+      <div>
+      <img src={logo} alt="Login Image" />
+      </div>
+      <div>
       {data ? (
         <p>
           Success! You may now head{' '}
@@ -111,17 +101,17 @@ console.log('here2')
           />
           <button
             className="btn btn-block btn-primary"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', background: 'gray', marginBottom: '10px', color: 'white'} }
             type="submit"
           >
             Submit
           </button>
-          <p>
+          <p style={{ color: 'white', display: 'flex', justifyContent: 'center'}}>
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
         </form>
       )}
-
+    </div>
       {error && (
         <div className="my-3 p-3 bg-danger text-white">
           {error.message} 

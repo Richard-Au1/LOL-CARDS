@@ -79,7 +79,6 @@ const MyComponent = () => {
                   <img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
                 </Link>
               </div>
-              <button className = 'fav-btn'> Favorite </button>
             </li>
             
           ))
