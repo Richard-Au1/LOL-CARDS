@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import  {LOGIN_USER}  from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -70,7 +70,7 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+      {/* <form onSubmit={handleFormSubmit}>
         <label>
           Email:
           <input type="text" name="email" value={formState.email} onChange={handleChange} />
@@ -84,20 +84,20 @@ const Login = () => {
       {error && <p>Error: {error.message}</p>}
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>  
+      </p>   */}
       {data ? (
         <p>
           Success! You may now head{' '}
           <Link to="/champions">back to the champion page.</Link>
         </p>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <input
             className="form-input"
             placeholder="Your email"
             name="email"
             type="email"
-            value={formData.email}
+            value={formState.email}
             onChange={handleChange}
           />
           <input
@@ -105,7 +105,7 @@ const Login = () => {
             placeholder="******"
             name="password"
             type="password"
-            value={formData.password}
+            value={formState.password}
             onChange={handleChange}
           />
           <button
@@ -123,9 +123,9 @@ const Login = () => {
 
       {error && (
         <div className="my-3 p-3 bg-danger text-white">
-          {error.message}
-        </div>
-      )}
+          {error.message} 
+         </div> 
+       )}
     </div>
   );
 };

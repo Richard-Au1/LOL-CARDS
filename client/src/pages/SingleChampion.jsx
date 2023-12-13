@@ -5,7 +5,7 @@ import { QUERY_SINGLE_CHAMPIONS } from '../utils/queries';
 
 // useParams 
 
-const SingleChamp = () => { 
+const SingleChamp = () => {
   const { championId } = useParams();
 
   const { data } = useQuery(QUERY_SINGLE_CHAMPIONS, {
@@ -44,21 +44,57 @@ const SingleChamp = () => {
   }, [championId]);
 
   return (
-    <div>
-      <h1>Champions</h1>
-      <ul>
-      {champion.map((champion) => (
-        <li key={champion.id}> 
-        {champion.id} 
-        <li> {champion.lore} </li>
-        <img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" />
-        </li>
-      ))}
+    <div style={backgroundStyle}>
+      <h1 style={championNameStyle}>Champions </h1>
+      <ul style={championTitle} >
+        {champion.map((champion) => (
+          <li key={champion.id}>
+            <li style={champSection1}>
+            {champion.id} 
+            </li>
+           <li style={champSection1}><img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" /></li> 
+            <li style={championDescription}>
+              <p>Lore:</p>
+             {champion.lore} 
+             </li>
+          </li>
+        ))}
       </ul>
     </div>
   );
-
 };
 
+const backgroundStyle = {
+  background: '#2b2b60',
+}
+
+const championTitle = {
+  color: 'white',
+  listStyle: 'none', 
+  margin: '0px',
+  padding: '0px',
+}
+
+const championNameStyle = {
+  fontSize: '40px',
+  fontWeight: 'Bold',
+  listStyle: 'none',
+  color: 'white',
+  border: '10px black',
+  display: 'flex',
+  justifyContent: "center",
+  textDecoration: 'underline',
+};
+
+const champSection1 = {
+  display: "flex",
+  justifyContent: "center",
+  fontSize: '50px',
+}
+
+const championDescription = {
+  display: "flex",
+  justifyContent: "center",
+}
 
 export default SingleChamp;
