@@ -46,7 +46,7 @@ const Login = () => {
       [name]: value,
     });
   };
-
+  
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -57,16 +57,17 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
-
+console.log('here2')
     // clear form values
     setFormState({
       email: '',
       password: '',
     });
   };
+  
   return (
     <div>
       <h2>Login</h2>
