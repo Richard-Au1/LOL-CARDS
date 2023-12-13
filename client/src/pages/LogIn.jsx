@@ -6,34 +6,6 @@ import logo from '../assets/championList.jpeg';
 
 import Auth from '../utils/auth';
 
-// const LoginPage = () => {
-//   const [formState, setFormState] = useState({
-//     username: '',
-//     password: '',
-//   });
-
-//   const [loginUser, { error }] = useMutation(LOGIN_USER);
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       await loginUser({
-//         variables: {
-//           email: formData.email,
-//           password: formData.password,
-//         },
-//       });
-
-//       window.location.href = '/dashboard';
-//     } catch (error) {
-//       console.error('Can not log in', error.message);
-//     }
-//   };
-
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);

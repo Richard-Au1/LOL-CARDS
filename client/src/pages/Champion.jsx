@@ -52,18 +52,6 @@ const MyComponent = () => {
     };
   }, [champions]);
 
-  // useEffect(() => {
-  //   const handleClick = (event) => {
-  //     console.log(event.target);
-  //   }
-
-  //   const favElement = document.querySelectorAll('.fav-btn');
-  //   favElement.forEach((element) => {
-  //     element.addEventListener('click', handleClick);
-  //   });
-  // }, [favorites]);
-
-  // How do we access the seed data description? We can access the api data objects 'blurb' but what if we want the full lore?
   return (
     <div style={backgroundStyle}>
       <div>
