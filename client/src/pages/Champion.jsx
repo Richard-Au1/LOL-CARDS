@@ -81,6 +81,7 @@ const MyComponent = () => {
               </div>
               <button className = 'fav-btn'> Favorite </button>
             </li>
+            
           ))
         }</ul>
       }
