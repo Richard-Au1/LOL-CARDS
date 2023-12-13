@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 const MyComponent = () => {
   const [champions, setChampions] = useState([]);
   const [error, setError] = useState(null);
-  const [favorites, setFavorites] = useState([])
+  // const [favorites, setFavorites] = useState([])
 
   // we can use promise.all to do multiple fetch requests. The problem is that the endpoint that riot gives us is the individual champion. 
   useEffect(() => {
@@ -52,16 +52,16 @@ const MyComponent = () => {
     };
   }, [champions]);
 
-  useEffect(() => {
-    const handleClick = (event) => {
-      console.log(event.target);
-    }
+  // useEffect(() => {
+  //   const handleClick = (event) => {
+  //     console.log(event.target);
+  //   }
 
-    const favElement = document.querySelectorAll('.fav-btn');
-    favElement.forEach((element) => {
-      element.addEventListener('click', handleClick);
-    });
-  }, [favorites]);
+  //   const favElement = document.querySelectorAll('.fav-btn');
+  //   favElement.forEach((element) => {
+  //     element.addEventListener('click', handleClick);
+  //   });
+  // }, [favorites]);
 
   // How do we access the seed data description? We can access the api data objects 'blurb' but what if we want the full lore?
   return (

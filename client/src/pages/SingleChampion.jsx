@@ -53,14 +53,14 @@ const SingleChamp = () => {
       <ul style={championTitle} >
         {champion.map((champion) => (
           <li key={champion.id}>
-            <li style={champSection1}>
+            <div style={champSection1}>
             {champion.id} 
-            </li>
-           <li style={champSection1}><img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" /></li> 
-            <li style={championDescription}>
-              <p>Lore:</p>
+            </div>
+           <div style={champSection1}><img className='champion-img' src={`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${champion.image.full}`} alt="champion image" /></div> 
+            <div style={championDescription}>
+              <p style={{fontSize: '30px', marginBottom: '0px', display: 'flex', justifyContent: 'start', margin: '10px'}} >Lore:</p>
              {champion.lore} 
-             </li>
+             </div>
           </li>
         ))}
       </ul>
@@ -80,7 +80,7 @@ const championTitle = {
 }
 
 const championNameStyle = {
-  fontSize: '40px',
+  fontSize: '35px',
   fontWeight: 'Bold',
   listStyle: 'none',
   color: 'white',
@@ -92,11 +92,13 @@ const championNameStyle = {
 
 const champSection1 = {
   display: "flex",
+  margin: '10px',
   justifyContent: "center",
   fontSize: '50px',
 }
 
 const championDescription = {
+  fontSize: '20px',
   display: "flex",
   justifyContent: "center",
 }

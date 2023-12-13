@@ -39,8 +39,8 @@ const SignUpPage = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div >
+      <h2 >Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username:

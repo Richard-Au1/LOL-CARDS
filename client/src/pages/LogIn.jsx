@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import  {LOGIN_USER}  from '../utils/mutations';
+import { LOGIN_USER } from '../utils/mutations';
 import logo from '../assets/championList.jpeg';
 
 import Auth from '../utils/auth';
@@ -47,7 +47,7 @@ const Login = () => {
       [name]: value,
     });
   };
-  
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -61,19 +61,19 @@ const Login = () => {
     } catch (error) {
       console.error(error);
     }
-console.log('here2')
+    console.log('here2')
     // clear form values
     setFormState({
       email: '',
       password: '',
     });
   };
-  
+
   return (
     <div>
-      <h2 style={{color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2>
+      <h2 style={{ color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2>
       <div>
-      <img src={logo} alt="Login Image" />
+        <img src={logo} alt="Login Image" />
       </div>
       <div>
       {data ? (
@@ -114,9 +114,9 @@ console.log('here2')
     </div>
       {error && (
         <div className="my-3 p-3 bg-danger text-white">
-          {error.message} 
-         </div> 
-       )}
+          {error.message}
+        </div>
+      )}
     </div>
   );
 };
