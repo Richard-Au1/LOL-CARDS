@@ -71,7 +71,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2 style={{ color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2>
+      {/* <h2 style={{ color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2> */}
       <div>
         <img src={logo} alt="Login Image" />
       </div>
