@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'; 
+import  {LOGIN_USER}  from '../utils/mutations';
+
+import Auth from '../utils/auth';
 
 // const LoginPage = () => {
 //   const [formState, setFormState] = useState({
@@ -31,7 +33,7 @@ import { LOGIN_USER } from '../utils/mutations';
 //     }
 //   };
 
-const Login = (props) => {
+const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -68,7 +70,7 @@ const Login = (props) => {
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+      {/* <form onSubmit={handleFormSubmit}>
         <label>
           Email:
           <input type="text" name="email" value={formState.email} onChange={handleChange} />
@@ -82,7 +84,48 @@ const Login = (props) => {
       {error && <p>Error: {error.message}</p>}
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+      </p>   */}
+      {data ? (
+        <p>
+          Success! You may now head{' '}
+          <Link to="/champions">back to the champion page.</Link>
+        </p>
+      ) : (
+        <form onSubmit={handleFormSubmit}>
+          <input
+            className="form-input"
+            placeholder="Your email"
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="******"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+          <button
+            className="btn btn-block btn-primary"
+            style={{ cursor: 'pointer' }}
+            type="submit"
+          >
+            Submit
+          </button>
+          <p>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
+        </form>
+      )}
+
+      {error && (
+        <div className="my-3 p-3 bg-danger text-white">
+          {error.message} 
+         </div> 
+       )}
     </div>
   );
 };
