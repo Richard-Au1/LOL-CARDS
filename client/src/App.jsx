@@ -1,7 +1,7 @@
 import './App.css';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, from, HttpLink } from '@apollo/client';
-import Header from './components/Header'
+// import Header from './components/Header'
 import { onError } from "@apollo/client/link/error";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -25,12 +25,13 @@ const client = new ApolloClient({
 function App() {
   
     const location = useLocation();
-    const isHeaderVisible = location.pathname !== '/'; 
+    // const isHeaderVisible = location.pathname !== '/'; 
+    
 
 return (
     <ApolloProvider client={client}>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
-        {isHeaderVisible && <Header />}
+        {/* {isHeaderVisible && <Header />} */}
         <Outlet />
       </div>
     </ApolloProvider>
