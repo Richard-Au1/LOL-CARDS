@@ -79,7 +79,7 @@ console.log('here2')
       {data ? (
         <p>
           Success! You may now head{' '}
-          <Link to="/champions">back to the champion page.</Link>
+          <Link to="/champion">back to the champion page.</Link>
         </p>
       ) : (
         <form onSubmit={handleFormSubmit}>
