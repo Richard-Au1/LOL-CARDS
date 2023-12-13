@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import  {LOGIN_USER}  from '../utils/mutations';
+import logo from '../assets/championList.jpeg';
 
 import Auth from '../utils/auth';
 
@@ -69,7 +70,7 @@ const Login = () => {
   };
   return (
     <div>
-      <h2>Login</h2>
+      <h2 style={{color: 'white', textDecoration: 'underline', display: 'flex', justifyContent: 'center' }} >Login</h2>
       {/* <form onSubmit={handleFormSubmit}>
         <label>
           Email:
@@ -85,6 +86,7 @@ const Login = () => {
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>   */}
+     <img src={logo} alt="Login Image" />
       {data ? (
         <p>
           Success! You may now head{' '}
@@ -110,12 +112,12 @@ const Login = () => {
           />
           <button
             className="btn btn-block btn-primary"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', background: 'gray', marginBottom: '10px', color: 'white'} }
             type="submit"
           >
             Submit
           </button>
-          <p>
+          <p style={{ color: 'white'}}>
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
         </form>
