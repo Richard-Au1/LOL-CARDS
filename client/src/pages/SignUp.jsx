@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import logo from '../assets/signupImage.jpg'
 
 import Auth from '../utils/auth';
 
@@ -39,29 +40,60 @@ const SignUpPage = () => {
   };
 
   return (
-    <div >
-      <h2 >Sign Up</h2>
+    <div style={{display: 'flex', justifyContent: 'center' }} >
+      <img style={{height: '250px', margin: '60px' }} src= {logo} alt="signupImage" />
+      <div style={{margin: '60px', }}>
+      <h2 style={formStyle}>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label style={informationStyle}>
           Username:
           <input type="text" name="username" value={formData.username} onChange={handleChange} />
         </label>
-        <label>
-          Email:
+        <label style={informationStyle}>
+          Email Info:
           <input type="email" name="email" value={formData.email} onChange={handleChange} />
         </label>
-        <label>
+        <label style={informationStyle}>
           Password:
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </label>
-        <button type="submit">Sign Up</button>
+        <button style={buttonStyle} type="submit">Sign Up</button>
       </form>
       {error && <p>Error: {error.message}</p>}
-      <p>
+      <p style={loginStyle}>
         Already have an account? <Link to="/login">Login</Link>
       </p>
+      </div>
     </div>
   );
 };
+
+const formStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  color: 'white',
+  textDecoration: 'underline',
+}
+
+const informationStyle = {
+  color: 'white',
+  display: 'flex',
+  justifyContent: 'center',
+}
+
+const buttonStyle = {
+  color: 'black',
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  marginTop: '10px',
+  marginBottom: '10px',
+}
+
+const loginStyle = {
+  color: 'white',
+  display: 'flex',
+  justifyContent: 'center',
+}
 
 export default SignUpPage;
