@@ -1740,5 +1740,12 @@
       border-color: white;
       color: darkgoldenrod;
     }
+
+    #favorites-card {
+      width: auto;
+      border: solid;
+      border-color: white;
+      color: darkgoldenrod;
+    }
   }
   
